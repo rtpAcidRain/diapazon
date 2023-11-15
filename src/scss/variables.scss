@@ -1,0 +1,103 @@
+$scale-rem: 1rem;
+
+$xs: 0;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+$black100: #161616;
+$black80: #333333;
+$black70: #4d4d4d;
+$black60: #666666;
+$black60: #666666;
+$black50: #808080;
+$black40: #999999;
+$black30: #e3e3e3;
+$black20: #e3e3e3;
+$black10: #eeeeee;
+$white100: #ffffff;
+$blue100: #0586ff;
+$blue60: #0063c1;
+$gray20: #e6e6e6;
+$g-black: rgba(0, 0, 0, 0.3);
+
+$grid-breakpoints: (
+  //   xs-: $xs,
+  sm-: $sm,
+  md-: $md,
+  //   lg-: $lg,
+  //   xl-: $xl,
+  //   xxl-: $xxl
+);
+
+$scale-media: "(min-width: 576px) and (max-aspect-ratio: 13 / 9) and (max-height: 499px), (min-width: 576px) and (max-aspect-ratio: 13 / 9) and (max-width: 1441px), (min-width: 668px) and (min-height: 416px) and (max-height: 499px), (min-width: 668px) and (min-height: 416px) and (max-width: 1441px), (min-width: 980px) and (max-height: 499px), (min-width: 980px) and (max-width: 1441px)";
+
+:root {
+  --scale-rem: #{$scale-rem};
+
+  --header: 48px;
+  --scrollheader: 64px;
+
+  --transition: 0.4s ease;
+
+  --container: 1660px;
+
+  --def-grid: repeat(4, minmax(0, 1fr));
+  --def-gap: 0 16px;
+  --def-one-gap: 16px;
+
+  --modal-grid: repeat(4, minmax(0, 1fr));
+  --modal-gap: 0 16px;
+  --modal-one-gap: 16px;
+
+  --padding: 20px;
+  --padding-bot: 80px;
+
+  --black100: #{$black100};
+  --black80: #{$black80};
+  --black70: #{$black70};
+  --black60: #{$black60};
+  --black50: #{$black50};
+  --black40: #{$black40};
+  --black20: #{$black30};
+  --black20: #{$black20};
+  --black10: #{$black10};
+
+  --white100: #{$white100};
+
+  --blue100: #{$blue100};
+  --blue60: #{$blue60};
+
+  --gray20: #{$gray20};
+
+  --g-black: #{$g-black};
+}
+
+@media screen and (min-width: $sm) {
+  :root {
+    --header: 164px;
+    --scrollheader: 79px;
+
+    --def-grid: repeat(12, minmax(0, 1fr));
+    --def-gap: 0 calc(var(--scale-rem) * 3.6);
+    --def-one-gap: calc(var(--scale-rem) * 3.6);
+
+    --modal-grid: repeat(8, minmax(0, 1fr));
+    --modal-gap: 0 calc(var(--scale-rem) * 2.8);
+    --modal-one-gap: calc(var(--scale-rem) * 2.8);
+
+    --padding: calc(var(--scale-rem) * 6);
+    --padding-bot: calc(var(--scale-rem) * 10);
+  }
+}
+
+@media #{$scale-media} {
+  $scale-rem: max(
+    0.5rem,
+    min(1rem, calc(0.5rem + 5 * ((100vw - 720px) / 480)))
+  );
+  :root {
+    --scale-rem: #{$scale-rem};
+  }
+}

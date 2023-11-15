@@ -1,0 +1,85 @@
+.sertificates{
+    &__heading {
+        border-bottom: 1px solid var(--black20);
+        margin-bottom: 80px;
+        padding-bottom: 40px;
+
+        & > div:first-child {
+            max-width: 278px;
+        }
+    }
+    &__main {
+        .title  {
+            margin-bottom: setSize(24);
+           
+        }
+
+        &__container {
+            display: flex;
+            flex-direction: column;
+            gap: setSize(40);
+            padding-bottom: setSize(40);
+            .text {
+                display: flex;
+                flex-direction: column;
+                gap: setSize(20);
+            }
+
+        }
+
+        &__desk {
+            display: flex;
+            flex-direction: column;
+            gap: setSize(24);
+            
+        }
+    }
+    &__buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 20px;
+        .button--secondary {
+            width: 100%;
+        } 
+        
+    }
+}
+
+
+
+@media #{$scale-media}, (min-width: 1441px)  {
+    .sertificates{
+        &__heading {
+            padding-bottom: var(--padding-bot);
+            margin-bottom: setSize(100);
+        }
+        &__main {
+            .title  {
+                margin-bottom: setSize(50);
+            }
+    
+            &__container {
+                gap: setSize(46);
+                padding-bottom: setSize(48);
+                border-bottom: 1px solid var(--black20);
+                margin-bottom: setSize(64);
+                .text {
+                    gap: setSize(24);
+                }
+            }
+    
+            &__desk {
+                gap: setSize(32);
+            }
+        }
+        &__buttons {
+            flex-direction: row-reverse;
+            gap: setSize(32);
+            .button--secondary {
+                width: fit-content;
+            } 
+        }
+    }
+}

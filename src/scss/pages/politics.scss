@@ -1,0 +1,46 @@
+.politics {
+    &__text {
+        & > ul {
+            display: flex;
+            flex-direction: column;
+            gap: setSize(80);
+            & > li {
+                display: flex;
+                flex-direction: column;
+                gap: setSize(40);
+                & > div {
+                    & > ul {
+                        padding-top: setSize(16);
+                        display: flex;
+                        flex-direction: column;
+                        gap: setSize(16);
+                        & > li {
+                            display: flex;
+                            gap: setSize(4);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media #{$scale-media}, (min-width: 1441px) {
+        &__text {
+            & > ul {
+                gap: setSize(60);
+                & > li {
+                    gap: setSize(30);
+                    & > div {
+                        & > ul {
+                            padding-top: setSize(12);
+                            gap: setSize(12);
+                            & > li {
+                                gap: setSize(6);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

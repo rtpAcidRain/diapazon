@@ -1,0 +1,201 @@
+@use "sass:list";
+
+.heading {
+  display: block;
+  // margin: 0;
+  // width: fit-content;
+  &:not([class^="color--"], [class*=" color--"]) {
+    color: var(--black100);
+  }
+
+  span {
+    .button {
+      margin-top: 16px;
+      margin-right: 55px;
+      margin-left: auto;
+    }
+  }
+
+  .heading__word-container {
+    overflow: hidden;
+    opacity: 1;
+    display: block;
+    color: inherit;
+  }
+
+  .heading__word-container .wrap_header_hidden_left {
+    overflow: hidden !important;
+    color: inherit;
+  }
+
+  .heading__word-container .split-lines {
+    overflow: hidden;
+    opacity: 0;
+    display: block;
+    animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+    color: inherit;
+    width: 100%;
+    transform-origin: center center;
+    -webkit-text-size-adjust: 100%;
+  }
+}
+
+.default-heading {
+  padding-top: setSize(64);
+  padding-bottom: 60px;
+  .heading {
+    padding-bottom: setSize(31);
+    border-bottom: 1px solid var(--black20);
+  }
+}
+
+.bread {
+  &-crumps {
+    display: flex;
+    gap: setSize(4);
+    padding-top: 24px;
+  }
+
+  &-crump {
+    display: flex;
+    gap: setSize(4);
+
+    a {
+      padding: setSize(2) 0 setSize(4);
+    }
+
+    &:not(:first-child)::before {
+      content: $icon-arrowR;
+      font-family: "#{$icomoon-font-family}" !important;
+      speak: never;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      color: var(--black20);
+      line-height: 1;
+      font-size: clamp(14px, calc(var(--scale-rem) * 2.4), 24px);
+      display: block;
+      width: setSize(24);
+      height: setSize(24);
+    }
+
+    &:last-child {
+      a {
+        color: var(--black60);
+      }
+    }
+
+    a {
+      color: var(--black60);
+
+      transition: color var(--transition);
+      &:hover {
+        color: var(--black40);
+      }
+    }
+  }
+}
+
+.tabs {
+  display: flex;
+  gap: setSize(12);
+  margin-bottom: 40px;
+  padding-left: var(--padding);
+  padding-right: var(--padding);
+  overflow: auto;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.default-container--tabs {
+  padding-left: 0;
+  padding-right: 0;
+  & > div {
+    padding-left: var(--padding);
+    padding-right: var(--padding);
+  }
+}
+
+@media #{$scale-media}, (min-width: 1441px) {
+  .heading {
+    span {
+      display: inline-flex;
+      gap: 0 setSize(59);
+      align-items: flex-end;
+      .button {
+        margin-bottom: setSize(12);
+      }
+    }
+  }
+  .default-heading {
+    padding-bottom: var(--padding-bot);
+    .heading {
+      border-bottom: 1px solid var(--black20);
+      padding-bottom: setSize(63.5);
+    }
+  }
+  .tabs {
+    gap: setSize(16);
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    overflow: visible;
+  }
+
+  .default-container--tabs {
+    padding-left: var(--padding);
+    padding-right: var(--padding);
+
+    & > div {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  .bread {
+    &-crumps {
+      padding-top: setSize(39.5);
+    }
+  }
+}
+
+$headingtransitions: (0, 0s, 1.2s, 700px), (1, 0s, 1.2s, 1000px),
+  (3, 0s, 1.2s, 300px), (4, 0s, 1.2s, 500px), (5, 0s, 1.2s, 400px),
+  (7, 0s, 1.2s, 400px), (8, 0s, 0.5s, 400px), (9, 0s, 0.9s, 400px),
+  (10, 0s, 1.2s, 400px), (14, 0s, 1s, 400px);
+
+@mixin headingAnims($textlevel, $animdelay, $animduration, $pixels) {
+  &.sm-text--#{$textlevel} .heading__word-container--visible .split-lines {
+    animation: an_#{$textlevel} $animduration 1 both;
+    opacity: 0;
+    transform: perspective(1000px) translate3d(0px, $pixels, 0px)
+      rotate3d(-100, 0, 50, 45deg);
+    animation-delay: $animdelay;
+  }
+  @keyframes an_#{$textlevel} {
+    from {
+      opacity: 0;
+      transform: perspective(1000px) translate3d(0px, $pixels, 0px)
+        rotate3d(-100, 0, 50, 45deg);
+    }
+    to {
+      opacity: 1;
+      transform: perspective(500px) translate3d(0, 0, 0);
+    }
+  }
+}
+
+@mixin setHeadingAnims() {
+  @for $i from 0 to length($headingtransitions) {
+    $nl: list.nth($headingtransitions, $i + 1);
+
+    .heading {
+      @include headingAnims($nl...);
+    }
+  }
+}
+
+@include setHeadingAnims();

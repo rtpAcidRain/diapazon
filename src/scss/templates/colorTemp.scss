@@ -1,0 +1,32 @@
+$colors: (
+    black100: $black100,
+    black80: $black80,
+    black70: $black70,
+    black60: $black60,
+    black50: $black50,
+    black40: $black40,
+    black30: $black30,
+    black20: $black20,
+    black10: $black10,
+    white100: $white100,
+    blue100: $blue100,
+    blue60: $blue60,
+    gray20: $gray20,
+    g-black: $g-black,
+);
+
+
+@mixin colorSet($color) {
+    color: $color !important;
+}
+
+@mixin colorGenerate($size: ''){
+    @each $name, $res in $colors {
+  
+      .#{$size}color--#{$name} {
+        @include colorSet($res)
+      }
+    }
+}
+
+@include colorGenerate()

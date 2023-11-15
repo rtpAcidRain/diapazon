@@ -1,0 +1,24 @@
+@mixin ResGenerate() {
+
+    @each $name, $res in $grid-breakpoints {
+
+      @if $name == 'sm-'{
+        @media #{$scale-media}, (min-width: 1441px) {
+          @include  colorGenerate($name);
+          @include  fontGenerate($name);
+          @include  setGridColumn($name);
+        }
+      }
+      @else { 
+        @media screen and (min-width: #{$res}) {
+
+            @include  colorGenerate($name);
+            @include  fontGenerate($name);
+            @include  setGridColumn($name);
+        }
+      }
+    } 
+  
+  }
+  
+  @include  ResGenerate();

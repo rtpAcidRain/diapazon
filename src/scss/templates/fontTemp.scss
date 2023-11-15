@@ -1,0 +1,83 @@
+@use "sass:list";
+@use "sass:map";
+
+html {
+  color: var(--black100)
+}
+
+*{
+    font-family: 'Inter';
+    font-style: normal;
+    font-display: swap;
+    
+}
+
+$font-list: 
+    (112, 105,  -0.04em), 
+    (96, 96,  -0.04em), 
+    (90, 81,  -0.01em), 
+    (48, 46,  -0.03em), 
+    (48, 65,  -0.04em, 500), 
+    (40, 48,  -0.02em), 
+    (27, 32,  -0.02em), 
+    (27, 32,  -0.02em, 500), 
+    (23, 31,  -0.02em), 
+    (20, 27,  -0.01em), 
+    (17, 23), 
+    (17, 20, -0.02em, 500), 
+    (17, 23, -0.01em, normal, uppercase),
+    (15, 20, -0.04em),
+    (13, 18),
+    (9, 13, unset, 800, uppercase),
+    (96, 105, -0.03em),
+    (72, 65, -0.01em),
+    (46, 41, -0.01em),
+    (40, 44, -0.03em),
+    (36, 38, -0.03em),
+    (32, 35, -0.03em),
+    (24, 29, -0.02em),
+    (20, 27),
+    (20, 24, -0.02em),
+    (17, 23, -0,01em),
+    (17, 20, -0,01em),
+    (14, 17, -0.02em, 500),
+    (14, 20),
+    (13, 18, -0.01em),
+    (12, 17),
+    (11, 15),
+;
+
+
+@mixin fontSet($size, $height, $spacing:unset, $weight: normal, $transform: none) {
+    $line-height: calc($height / $size); 
+    font-size: clamp(9px, calc(var(--scale-rem) * (#{$size} / 10)), #{$size}px);
+    line-height: #{$line-height}em;
+    letter-spacing: $spacing;
+    font-weight: $weight;
+    text-transform: $transform;
+}
+
+@mixin fontGenerate($name: '') {
+
+  @for $i from 0 to 16 {
+    $nl: list.nth($font-list, $i + 1);
+
+    .#{$name}text--#{$i} {
+      @include fontSet($nl...)
+    }
+  }
+
+}
+
+@mixin fontMobileGenerate(){
+  @for $i from 15 to length($font-list) {
+    $nl: list.nth($font-list, $i + 1);
+
+    .text--#{$i} {
+      @include fontSet($nl...)
+    }
+  }
+}
+
+@include fontMobileGenerate();
+@include  fontGenerate();

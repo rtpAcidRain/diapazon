@@ -1,0 +1,133 @@
+.slider{
+    &--roller {
+        overflow: visible;
+
+        .experiment.open.show.modal--transition & {
+
+            transition: transform var(--transition) 500ms;
+        }
+    
+        .experiment.show.modal--transition & {
+    
+            transition: transform var(--transition) ;
+        }
+    
+        .experiment.open & {
+    
+            transform: translateY(0px);
+        }
+    }
+
+
+    &--carousel {
+        overflow: visible !important;
+        .swiper-slide {
+            width: 236px;
+        }
+    }
+
+
+    .experiment &{
+        padding: 0 setSize(60);
+        transform: translateY(calc(100% + (var(--scale-rem) * 2.4)));
+
+        .swiper-wrapper {
+            cursor: grab;
+        }
+        
+        .swiper-slide {
+            max-width: setSize(367);
+            overflow: hidden;
+            
+            
+
+
+            a{
+                --defaultTrans: color var(--transition), border-color var(--transition);
+                border-radius: 10px;
+                border: 1px solid var(--black20);
+                padding: setSize(20);
+                display: flex;
+                gap: setSize(40);
+                flex-direction: column;
+                transition: var(--defaultTrans);
+
+                & > div {
+                    display: flex;
+                    gap: setSize(20);
+                    flex-direction: column;
+                    transition: inherit;
+
+                    .title  {
+                        transition: inherit;
+
+                    }
+
+                    p {
+                        color: var(--black40);
+                        transition: inherit;
+                    }
+                }
+            }
+
+            &:hover{
+                a{
+                    border-color: var(--blue100);
+
+                    & > div {
+
+                        .title {
+
+                            color: var(--blue100);
+                        }
+
+                        p {
+                            color: var(--black60);
+                        }
+                    }
+                }
+            }
+            
+        }
+
+        .swiper-scrollbar {
+            max-width: 876px;
+        }
+    }
+
+   
+
+    
+}
+
+
+.swiper-scrollbar {
+    height: 2px;
+    margin: auto;
+    width: 100%;
+    background-color: var(--black20);
+    margin-top: setSize(40);
+    cursor: pointer;
+    .swiper-scrollbar-drag {
+        height: 2px;
+        background-color: var(--blue100);
+        
+    }
+}
+
+
+
+@media #{$scale-media}, (min-width: 1441px)  {
+    .slider{
+        &--carousel {
+            .swiper-slide {
+                width: fit-content;
+            }
+        }
+    }
+    .swiper-scrollbar {
+        .slider--carousel &   {
+            display: none;
+        }
+    }
+}

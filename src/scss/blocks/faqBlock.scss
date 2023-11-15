@@ -1,0 +1,12 @@
+.faq {
+    
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: setSize(16);
+    }
+
+    & .button {
+        margin-top: setSize(40);
+    }
+}

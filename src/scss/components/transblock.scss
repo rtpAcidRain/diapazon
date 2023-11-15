@@ -1,0 +1,24 @@
+.trans-block {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 0 0 setSize(40);
+
+    .hr {
+        background-color: var(--black20);
+        height: 1px;
+        flex: 1;
+    }
+
+    .main-page + section > & {
+        padding-top: 80px;
+    }
+    
+    @media #{$scale-media}, (min-width: 1441px){
+        padding: setSize(100) 0;
+        gap: setSize(30);
+        .main-page + section > & {
+            padding-top: 100px;
+        }
+    }
+}

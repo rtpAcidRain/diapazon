@@ -1,0 +1,53 @@
+.about-lab{
+
+    &__gallery {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        img {
+            border-radius: 12px;
+            height: 300px;
+            object-fit: cover;
+            width: fit-content;
+            &:nth-child(1){
+                height: 200px;
+                width: 100%;
+            }
+            &:nth-child(3){
+                width: 100%;
+            }
+        }
+    }
+
+    &--main{
+    
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+
+        & > div {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+    }
+
+    @media #{$scale-media}, (min-width: 1441px){
+        &__gallery {
+            padding-top: setSize(100);
+            img {
+                height: auto !important;
+                width: fit-content !important;
+            }
+        }
+        &__text {
+            gap: setSize(50);
+            & > div {
+                gap: setSize(32);
+            }
+        }
+    }
+}

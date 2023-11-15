@@ -1,0 +1,107 @@
+.main-page__header .container{
+    display: flex;
+    & > * {
+        margin-top: auto;
+    }
+}
+
+.main-page__tests > .container--grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    & > .button  {
+        margin: 0 auto;
+    }
+}
+
+.main-page__tests .tests__item a {
+    display: grid !important;
+    grid-template-columns: var(--def-grid);
+    gap: var(--def-gap);
+}
+
+.faq-block .container--grid {
+    .title-block {
+        margin-right: auto;
+        .button {
+            margin-top: 24px;
+        }
+    }
+}
+
+
+.sertificates__heading {
+    display: grid !important;
+    grid-template-columns: var(--def-grid);
+    gap: var(--def-gap) ;
+    row-gap: 40px;
+}
+
+
+.contacts-main__information {
+    display: flex;
+    flex-direction: column;
+    gap:40px;
+}
+
+.about-lab--main {
+    & > .container--grid:not(.about-lab__gallery) {
+        padding-bottom: 40px;
+    }
+}
+
+.about-lab--main > .container--grid:not(.about-lab__gallery),
+.faq-block .container--grid,
+.study-services__container,
+.politic__content {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 40px;
+}
+
+@media #{$scale-media}, (min-width: 1441px) {
+    .about-lab--main {
+        & > .container--grid:not(.about-lab__gallery) {
+            padding-bottom: var(--padding-bot);
+        }
+    }
+    .container--grid {
+        display: grid !important;
+        grid-template-columns: var(--def-grid);
+        gap: var(--def-gap) !important;
+    }
+    
+    .container--grid--8 {
+        display: grid !important;
+        grid-template-columns: var(--modal-grid);
+        gap: var(--def-gap) !important;
+    }
+    
+    .container--grid--8--modal {
+        gap: var(--modal-gap) !important;
+    }
+    
+    .cols-full{
+        grid-column-start: 1;
+        grid-column-end: -1;
+    }
+}
+
+.f-row {
+    grid-row: 1;
+}
+
+
+@mixin setGridColumn($name: ''){
+    @for $i from 0 to 12 {
+        .#{$name}col-#{$i + 1}{
+            grid-column-start: $i + 1; 
+        }
+        .#{$name}cols-#{$i + 1}{
+            grid-column-end: span $i + 1; 
+        }
+    }
+}
+
+@include  setGridColumn();
